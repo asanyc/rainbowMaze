@@ -1,0 +1,12 @@
+div { padding: 3em; }
+body {padding: 2em 5em; margin: 0; background-color: #000; color: #ddd; font-family: "Consolas",sans-serif;} 
+canvas {vertical-align: middle; align:center; margin:auto;}
+h1 {}
+#container { background-color: #222; }
+#divCanvas { background-color: #333; text-align: center; }
+#UI { background-color: #333; }
+#buttons { background-color: #222 }
+#buttons button { padding:1em; width: 50%; }
+#sliders { background-color: #222; text-align: center; }
+#sliders input { width: 30%; }
+#sliders label { width: 30%; display: inline-block; }

@@ -1,18 +1,19 @@
-function Cell(i,j)
+function Cell(i,j,m)
 {
   this.i = i;
   this.j = j;
   this.visited = false;
   this.deadend = false;
+  this.maze = m;
 
   // TOP, RIGHT, BOTTOM, LEFT
   this.walls = [true,true,true,true];
   function index(i,j)
   {
-    if (i < 0 || j <0 || i > cols-1 || j > rows-1){
+    if (i < 0 || j <0 || i > this.maze.cols-1 || j > this.maze.rows-1){
       return -1;
     } else {
-      return i + j * cols;
+      return i + j * this.maze.cols;
     }
   }
 
@@ -20,10 +21,10 @@ function Cell(i,j)
   {
     var neighbors = [];
 
-    var top     = grid[index(i   , j-1)];
-    var right   = grid[index(i+1 , j  )];
-    var bottom  = grid[index(i   , j+1)];
-    var left    = grid[index(i-1 , j  )];
+    var top     = this.maze.g[index(i   , j-1)];
+    var right   = this.maze.g[index(i+1 , j  )];
+    var bottom  = this.maze.g[index(i   , j+1)];
+    var left    = this.maze.g[index(i-1 , j  )];
 
     if (top && !top.visited)
     {
@@ -55,42 +56,42 @@ function Cell(i,j)
 
   this.highlight = function()
   {
-    var x = this.i*w;
-    var y = this.j*w;
+    var x = this.i*this.maze.tileSize;
+    var y = this.j*this.maze.tileSize;
     noStroke();
     fill(128,255,128,128);
-    rect(x,y,w,w);
+    rect(x,y,this.maze.tileSize,this.maze.tileSize);
   }
 
   this.show = function()
   {
-    var x = this.i*w;
-    var y = this.j*w;
+    var x = this.i*this.maze.tileSize;
+    var y = this.j*this.maze.tileSize;
     strokeWeight(1);
     stroke(200,200,255);
 
     if (this.walls[0])
     {
-      line(x  , y  , x+w, y);      // TOP
+      line(x  , y  , x+this.maze.tileSize, y);      // TOP
     }
     if (this.walls[1])
     {
-      line(x+w, y  , x+w, y+w);  // RIGHT
+      line(x+this.maze.tileSize, y  , x+this.maze.tileSize, y+this.maze.tileSize);  // RIGHT
     }
     if (this.walls[2])
     {
-      line(x+w, y+w, x  , y+w);  // BOTTOM
+      line(x+this.maze.tileSize, y+this.maze.tileSize, x  , y+this.maze.tileSize);  // BOTTOM
     }
     if (this.walls[3])
     {
-      line(x  , y+w, x  , y);      // LEFT
+      line(x  , y+this.maze.tileSize, x  , y);      // LEFT
     }
 
     if (this.visited)
     {
       noStroke();
       fill(128,192,255,128);
-      rect(x,y,w,w);
+      rect(x,y,this.maze.tileSize,this.maze.tileSize);
     }
 
   }
