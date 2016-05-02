@@ -1,3 +1,21 @@
+/*
+
+Gonna branch this to attempt optimization
+-----------------------------------------
+cells[] will be most of the grid from before
+	row
+	col
+	visited
+edges
+	start{x,y}
+	end{x,y}
+	owners[cellindex,cellindex]
+mazeObj
+	current/next = indices from cells[]
+	checkNeighbors
+	remove walls
+*/
+
 var Maze = function()
 {
 	var m = {};
